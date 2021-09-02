@@ -9,12 +9,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.firebase.ui.auth.AuthMethodPickerLayout;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
 import java.util.List;
@@ -37,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate호출");
-
-
     }
 
     @Override
@@ -58,16 +58,17 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
     }
 
-    public void showFirebaseUI() {
+    public void showFirebaseUI(){
         List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.EmailBuilder().setRequireName(false).build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build(),
-                new AuthUI.IdpConfig.FacebookBuilder().build());
-
+                new AuthUI.IdpConfig.FacebookBuilder().setPermissions(Arrays.asList("user_friends")).build());
 
         Intent signInIntent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
                 .setIsSmartLockEnabled(false)
+
                 .setLogo(R.mipmap.ic_launcher_round)
                 .build();
         signInIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
