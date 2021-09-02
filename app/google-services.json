@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "385689363185",
+    "project_id": "mbtichattest",
+    "storage_bucket": "mbtichattest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:385689363185:android:8675e6c9102fc55abbbf50",
+        "android_client_info": {
+          "package_name": "com.example.mbti_final"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "385689363185-mscukaosg59oclimd1v2u75mittsam23.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mbti_final",
+            "certificate_hash": "f4197965033205e74903508295e04acd5447ea2c"
+          }
+        },
+        {
+          "client_id": "385689363185-paivslmjtnu3ohdcok4cfv3a4vrnnt5r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxb7thjeflSEq_NgUZD7ltXFrYcaeqOnU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "385689363185-paivslmjtnu3ohdcok4cfv3a4vrnnt5r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
