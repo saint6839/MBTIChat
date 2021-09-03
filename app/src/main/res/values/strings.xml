@@ -10,15 +10,11 @@
     <string name="fui_continue" translation_description="Button text to continue">계속</string>
     <string name="fui_tos_and_pp" translation_description="Global ToS and privacy policy message">
         By continuing, you are indicating that you accept our
-        <xliff:g
-            example="https://google.com/terms"
-            id="tos" translation_description="Terms of service text">
+        <xliff:g example="https://google.com/terms" id="tos" translation_description="Terms of service text">
             %1$s
         </xliff:g>
         and
-        <xliff:g
-            example="https://google.com/privacy"
-            id="pp" translation_description="Privacy policy text">
+        <xliff:g example="https://google.com/privacy" id="pp" translation_description="Privacy policy text">
             %2$s
         </xliff:g>.</string>
     <string name="fui_tos_and_pp_footer" translation_description="Global ToS and Privacy policy footer"><xliff:g example="https://google.com/terms" id="tos" translation_description="Footer ToS text">%1$s</xliff:g> \u00A0 \u00A0 <xliff:g example="https://google.com/privacy" id="pp" translation_description="Footer privacy policy text">%2$s</xliff:g></string>
@@ -140,4 +136,6 @@
     <string name="fui_verify_phone_number" translation_description="Button text to submit confirmation code and complete phone verification">Verify Phone Number</string>
     <string name="fui_sms_terms_of_service" translation_description="Fine print warning displayed below Verify Phone Number button">By tapping “%1$s”, an SMS may be sent. Message &amp; data rates may apply.</string>
     <string name="fui_sms_terms_of_service_and_privacy_policy_extended" translation_description="Fine print warning displayed below Verify Phone Number button">By tapping “%1$s”, you are indicating that you accept our <xliff:g example="https://google.com/terms" id="tos" translation_description="">%2$s</xliff:g> and <xliff:g example="https://google.com/privacy" id="pp" translation_description="">%3$s</xliff:g>. An SMS may be sent. Message &amp; data rates may apply.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

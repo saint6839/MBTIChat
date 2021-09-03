@@ -1,44 +1,33 @@
 package com.example.mbti_final;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
-import com.facebook.login.LoginManager;
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.mbti_final.guide.GuidePagerAdapter;
+import com.example.mbti_final.guide.ZoomOutPageTransformer;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends FragmentActivity {
     private static final String TAG = "HomeActivity.class";
-    private Button button;
     private long backpressedTime = 0;
+
+
+    private ViewPager2 viewPager;
+    private FragmentStateAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                LoginManager.getInstance().logOut();
-                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
-        });
-    }
+        viewPager = findViewById(R.id.viewPager2_Home);
+        pagerAdapter = new GuidePagerAdapter(this);
+        viewPager.setPageTransformer(new ZoomOutPageTransformer());
+        viewPager.setAdapter(pagerAdapter);
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume()호출");
     }
 
     @Override
@@ -53,4 +42,6 @@ public class HomeActivity extends AppCompatActivity {
         }
 
     }
+
 }
+

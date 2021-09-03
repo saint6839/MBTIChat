@@ -4,12 +4,19 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/USER/AndroidStudioProjects/MBTIChatTest/app/src/main/res/layout/activity_custom_loading_diaglog.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/MBTIChatTest/app/src/main/res/layout/activity_home.xml" value="0.18873239436619718" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/MBTIChatTest/app/src/main/res/layout/activity_main.xml" value="0.32916666666666666" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/MBTIChatTest/app/src/main/res/layout/fragment_guide.xml" value="0.32916666666666666" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/MBTIChatTest/app/src/main/res/layout/fragment_guide_2.xml" value="0.12222222222222222" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/MBTIChatTest/app/src/main/res/layout/fragment_guide_3.xml" value="0.12222222222222222" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/MBTIChatTest/app/src/main/res/layout/fragment_guide_4.xml" value="0.12222222222222222" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/MBTIChatTest/app/src/main/res/layout/fragment_guide_5.xml" value="0.12222222222222222" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/MBTI_final/app/src/main/res/layout/activity_home.xml" value="0.28541666666666665" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/MBTI_final/app/src/main/res/layout/activity_main.xml" value="0.33" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
