@@ -27,7 +27,6 @@ public class HomeActivity extends FragmentActivity {
         pagerAdapter = new GuidePagerAdapter(this);
         viewPager.setPageTransformer(new ZoomOutPageTransformer());
         viewPager.setAdapter(pagerAdapter);
-
     }
 
     @Override
@@ -40,7 +39,6 @@ public class HomeActivity extends FragmentActivity {
             finishAndRemoveTask(); // 액티비티 종료 + 태스크 리스트에서 지우기
             System.exit(0);
         }
-
     }
 
 }
