@@ -3,10 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/USER/AndroidStudioProjects/MBTIChatTest/app/src/main/res/drawable/custom_indicator.xml" value="0.23055555555555557" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/MBTIChatTest/app/src/main/res/drawable/round_background.xml" value="0.3494791666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/MBTIChatTest/app/src/main/res/drawable/round_purple_background.xml" value="0.3494791666666667" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/MBTIChatTest/app/src/main/res/layout/activity_custom_loading_diaglog.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/USER/AndroidStudioProjects/MBTIChatTest/app/src/main/res/layout/activity_home.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/MBTIChatTest/app/src/main/res/layout/activity_home.xml" value="0.337037037037037" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/MBTIChatTest/app/src/main/res/layout/activity_main.xml" value="0.32916666666666666" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/MBTIChatTest/app/src/main/res/layout/fragment_guide.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/MBTIChatTest/app/src/main/res/layout/fragment_guide_2.xml" value="0.12222222222222222" />

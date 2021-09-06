@@ -6,10 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity"
     android:orientation="vertical">
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_home"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:tabMinWidth="100dp"
+        app:tabTextAppearance="@style/tab_text"
+        app:tabIndicatorColor="@color/black"
+        app:tabIndicatorHeight="3dp"
+        app:tabPadding="15dp"
+        app:tabSelectedTextColor="@color/black"
+        app:tabRippleColor="@color/fui_transparent"
+        app:tabTextColor="#DCDCDC"
+        android:background="@drawable/custom_indicator">
         <com.google.android.material.tabs.TabItem
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -23,6 +33,6 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager2_Home"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>
