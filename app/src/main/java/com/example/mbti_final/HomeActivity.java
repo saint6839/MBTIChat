@@ -9,14 +9,15 @@ import android.widget.Toast;
 
 import com.example.mbti_final.guide.GuidePagerAdapter;
 import com.example.mbti_final.guide.ZoomOutPageTransformer;
+import com.google.android.material.tabs.TabLayout;
 
 public class HomeActivity extends FragmentActivity {
     private static final String TAG = "HomeActivity.class";
     private long backpressedTime = 0;
 
-
     private ViewPager2 viewPager;
     private FragmentStateAdapter pagerAdapter;
+    private TabLayout tab_home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,8 @@ public class HomeActivity extends FragmentActivity {
         pagerAdapter = new GuidePagerAdapter(this);
         viewPager.setPageTransformer(new ZoomOutPageTransformer());
         viewPager.setAdapter(pagerAdapter);
+
+        tab_home = findViewById(R.id.tab_home);
     }
 
     @Override
