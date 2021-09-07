@@ -30,7 +30,13 @@ public class HomeActivity extends FragmentActivity {
         recyclerView_chat = findViewById(R.id.recyclerView_chat);
         chatRecyclerViewAdapter = new ChatRecyclerViewAdapter();
 
-        ChatData item = new ChatData(R.drawable.loading_img,"뚱땅당","ISTP","제목","매칭중...");
+        ChatData item = new ChatData
+                .Builder(R.drawable.loading_img,"뚱땅땅")
+                .mbti("ISTP")
+                .title("제목")
+                .matching("매칭중")
+                .build();
+
         chatRecyclerViewAdapter.addItem(item);
         layoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
         recyclerView_chat.setLayoutManager(layoutManager);

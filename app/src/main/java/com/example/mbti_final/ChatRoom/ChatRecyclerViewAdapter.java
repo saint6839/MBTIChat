@@ -51,12 +51,12 @@ public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ViewHolder viewHolder = new ViewHolder(holder.itemView);
-
-        viewHolder.img_profile.setImageResource(items.get(position).getResId());
-        viewHolder.txt_nickname.setText(items.get(position).getNickname());
-        viewHolder.txt_mbti.setText(items.get(position).getMbti());
-        viewHolder.txt_title.setText(items.get(position).getTitle());
-        viewHolder.txt_matching.setText(items.get(position).getMatching());
+        ChatData chatData = items.get(position);
+        viewHolder.img_profile.setImageResource(chatData.getResId());
+        viewHolder.txt_nickname.setText(chatData.getNickname());
+        viewHolder.txt_mbti.setText(chatData.getMbti());
+        viewHolder.txt_title.setText(chatData.getTitle());
+        viewHolder.txt_matching.setText(chatData.getMatching());
     }
 
     @Override
