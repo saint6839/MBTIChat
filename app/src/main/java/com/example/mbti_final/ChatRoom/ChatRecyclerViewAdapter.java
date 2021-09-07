@@ -1,6 +1,5 @@
 package com.example.mbti_final.ChatRoom;
 
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +14,18 @@ import com.example.mbti_final.R;
 import java.util.ArrayList;
 
 public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    ArrayList<ChatData> items = new ArrayList<ChatData>();
+    ArrayList<ChatData> items = new ArrayList<>();
+
+    public ArrayList<ChatData> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<ChatData> items) {
+        this.items = items;
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final ImageView img_profile;
+        ImageView img_profile;
         TextView txt_nickname;
         TextView txt_mbti;
         TextView txt_title;
@@ -32,9 +39,6 @@ public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
             txt_title = itemView.findViewById(R.id.txt_title);
             txt_matching = itemView.findViewById(R.id.txt_matching);
         }
-        public ImageView getProfile(){
-            return img_profile;
-        }
     }
 
     @NonNull
@@ -46,7 +50,13 @@ public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        ViewHolder viewHolder = new ViewHolder(holder.itemView);
 
+        viewHolder.img_profile.setImageResource(items.get(position).getResId());
+        viewHolder.txt_nickname.setText(items.get(position).getNickname());
+        viewHolder.txt_mbti.setText(items.get(position).getMbti());
+        viewHolder.txt_title.setText(items.get(position).getTitle());
+        viewHolder.txt_matching.setText(items.get(position).getMatching());
     }
 
     @Override
