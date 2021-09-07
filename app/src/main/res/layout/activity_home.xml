@@ -11,7 +11,7 @@
         android:id="@+id/tab_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:tabMinWidth="100dp"
+        app:tabMinWidth="120dp"
         app:tabTextAppearance="@style/tab_text"
         app:tabIndicatorColor="@color/black"
         app:tabIndicatorHeight="3dp"
@@ -23,16 +23,22 @@
         <com.google.android.material.tabs.TabItem
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="Tab1"/>
+            android:text="채팅하기"/>
         <com.google.android.material.tabs.TabItem
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="Tab2"/>
+            android:text="채팅방목록"/>
     </com.google.android.material.tabs.TabLayout>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager2_Home"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_chat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
 </LinearLayout>

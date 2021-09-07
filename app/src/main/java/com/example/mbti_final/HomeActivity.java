@@ -1,35 +1,43 @@
 package com.example.mbti_final;
 
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.mbti_final.guide.GuidePagerAdapter;
-import com.example.mbti_final.guide.ZoomOutPageTransformer;
-import com.google.android.material.tabs.TabLayout;
+import com.example.mbti_final.ChatRoom.ChatData;
+import com.example.mbti_final.ChatRoom.ChatItem;
+import com.example.mbti_final.ChatRoom.ChatRecyclerViewAdapter;
 
 public class HomeActivity extends FragmentActivity {
     private static final String TAG = "HomeActivity.class";
     private long backpressedTime = 0;
-
-    private ViewPager2 viewPager;
-    private FragmentStateAdapter pagerAdapter;
-    private TabLayout tab_home;
+    private RecyclerView recyclerView_chat;
+    private ChatRecyclerViewAdapter chatRecyclerViewAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        viewPager = findViewById(R.id.viewPager2_Home);
-        pagerAdapter = new GuidePagerAdapter(this);
-        viewPager.setPageTransformer(new ZoomOutPageTransformer());
-        viewPager.setAdapter(pagerAdapter);
+        recyclerView_chat = findViewById(R.id.recyclerView_chat);
+        chatRecyclerViewAdapter = new ChatRecyclerViewAdapter();
 
-        tab_home = findViewById(R.id.tab_home);
+        ImageView img_test = new ImageView(getApplicationContext());
+        img_test.setImageResource(R.drawable.loading_img);
+
+        ChatData item = new ChatData.Builder(img_test, "뚱땅땅", "ISTP", "제목").matching("매칭중...").build();
+        chatRecyclerViewAdapter.addItem(item);
+        layoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
+        recyclerView_chat.setLayoutManager(layoutManager);
+        recyclerView_chat.setAdapter(chatRecyclerViewAdapter);
     }
 
     @Override
@@ -43,6 +51,5 @@ public class HomeActivity extends FragmentActivity {
             System.exit(0);
         }
     }
-
 }
 
