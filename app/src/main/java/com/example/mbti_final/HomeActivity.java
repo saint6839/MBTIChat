@@ -51,6 +51,7 @@ public class HomeActivity extends FragmentActivity {
         databaseReference.child(firebaseUser.getUid()).setValue(userData);
     }
 
+    // 상단 탭 변경 시 탭별 프래그먼트 전환
     private void onTabChaned(){
         chatRoomFragment = new ChatRoomFragment();
         chatListFragment = new ChatListFragment();
@@ -81,6 +82,8 @@ public class HomeActivity extends FragmentActivity {
         });
     }
 
+
+    // 두 번 빠르게 터치할 시 어플 종료 ( + 로그인 화면으로 돌아가는 것 방지 )
     @Override
     public void onBackPressed() {
         if (System.currentTimeMillis() > backpressedTime + 2000) {
