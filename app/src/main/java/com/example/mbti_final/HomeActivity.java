@@ -8,25 +8,51 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.mbti_final.ChatRoom.ChatData;
 import com.example.mbti_final.ChatRoom.ChatItem;
 import com.example.mbti_final.ChatRoom.ChatRecyclerViewAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeActivity extends FragmentActivity {
-    private static final String TAG = "HomeActivity.class";
-    private long backpressedTime = 0;
-    private RecyclerView recyclerView_chat;
+    private static final String TAG = "HomeActivity.class";     // 로그 TAG
+    private long backpressedTime = 0;                           // onBackPressed 관련 선언
+    private RecyclerView recyclerView_chat;                     // 채팅방 목록 관련 선언
     private ChatRecyclerViewAdapter chatRecyclerViewAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private DatabaseReference databaseReference;                // RealtimeDB 관련 선언
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
+        updateChatRoom();
+        inputUserData();
+    }
+
+    // 테스트 "Users" DB작성
+    private void inputUserData(){
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        HashMap<String, Object> userData = new HashMap<>();
+        userData.put("name", firebaseUser.getDisplayName());
+        userData.put("email", firebaseUser.getEmail());
+        userData.put("uid", firebaseUser.getUid());
+        databaseReference.child(firebaseUser.getUid()).setValue(userData);
+    }
+
+    private void updateChatRoom(){
         recyclerView_chat = findViewById(R.id.recyclerView_chat);
         chatRecyclerViewAdapter = new ChatRecyclerViewAdapter();
 
