@@ -21,13 +21,9 @@ import java.util.HashMap;
 public class HomeActivity extends FragmentActivity {
     private static final String TAG = "HomeActivity.class";     // 로그 TAG
     private long backpressedTime = 0;                           // onBackPressed 관련 선언
-    private RecyclerView recyclerView_chat;                     // 채팅방 목록 관련 선언
-    private ChatRecyclerViewAdapter chatRecyclerViewAdapter;
-    private RecyclerView.LayoutManager layoutManager;
     private DatabaseReference databaseReference;                // RealtimeDB 관련 선언
     private FirebaseUser firebaseUser;
-
-    private TabLayout tab_home;
+    private TabLayout tab_home;                                 // 상단 TabLayout 관련 선언
     ChatRoomFragment chatRoomFragment;
     ChatListFragment chatListFragment;
 
