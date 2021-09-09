@@ -30,15 +30,11 @@
             android:text="채팅방목록"/>
     </com.google.android.material.tabs.TabLayout>
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_chat"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+    </FrameLayout>
 
 </LinearLayout>

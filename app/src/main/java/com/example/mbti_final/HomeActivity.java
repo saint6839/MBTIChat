@@ -1,27 +1,22 @@
 package com.example.mbti_final;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.mbti_final.ChatRoom.ChatData;
-import com.example.mbti_final.ChatRoom.ChatItem;
+import com.example.mbti_final.ChatRoom.ChatListFragment;
+import com.example.mbti_final.ChatRoom.ChatRoomFragment;
 import com.example.mbti_final.ChatRoom.ChatRecyclerViewAdapter;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class HomeActivity extends FragmentActivity {
     private static final String TAG = "HomeActivity.class";     // 로그 TAG
@@ -32,14 +27,18 @@ public class HomeActivity extends FragmentActivity {
     private DatabaseReference databaseReference;                // RealtimeDB 관련 선언
     private FirebaseUser firebaseUser;
 
+    private TabLayout tab_home;
+    ChatRoomFragment chatRoomFragment;
+    ChatListFragment chatListFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        updateChatRoom();
-        inputUserData();
+        inputUserData();    // 사용자 로그인 정보 DB 저장
+        onTabChaned();      // 상단 탭 변경 시 이벤트
     }
 
     // 테스트 "Users" DB작성
@@ -52,21 +51,34 @@ public class HomeActivity extends FragmentActivity {
         databaseReference.child(firebaseUser.getUid()).setValue(userData);
     }
 
-    private void updateChatRoom(){
-        recyclerView_chat = findViewById(R.id.recyclerView_chat);
-        chatRecyclerViewAdapter = new ChatRecyclerViewAdapter();
+    private void onTabChaned(){
+        chatRoomFragment = new ChatRoomFragment();
+        chatListFragment = new ChatListFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.frameLayout, chatRoomFragment).commit();
+        tab_home = findViewById(R.id.tab_home);
 
-        ChatData item = new ChatData
-                .Builder(R.drawable.loading_img,"뚱땅땅")
-                .mbti("ISTP")
-                .title("제목")
-                .matching("매칭중")
-                .build();
+        tab_home.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
+                Fragment selected = null;
+                if(position == 0 )
+                    selected = chatRoomFragment;
+                else if(position == 1)
+                    selected = chatListFragment;
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,selected).commit();
+            }
 
-        chatRecyclerViewAdapter.addItem(item);
-        layoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
-        recyclerView_chat.setLayoutManager(layoutManager);
-        recyclerView_chat.setAdapter(chatRecyclerViewAdapter);
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     @Override
