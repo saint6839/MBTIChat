@@ -78,7 +78,6 @@ public class HomeActivity extends FragmentActivity {
         });
     }
 
-
     // 두 번 빠르게 터치할 시 어플 종료 ( + 로그인 화면으로 돌아가는 것 방지 )
     @Override
     public void onBackPressed() {

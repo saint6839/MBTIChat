@@ -27,7 +27,7 @@ public class ChatRoomFragment extends Fragment {
 
         ChatData item = new ChatData
                 .Builder(R.drawable.loading_img,"뚱땅땅")
-                .mbti("ISTP")
+                .mbti("ISFP")
                 .title("제목")
                 .matching("매칭중")
                 .build();
