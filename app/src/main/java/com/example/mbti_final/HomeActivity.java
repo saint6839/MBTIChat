@@ -1,20 +1,30 @@
 package com.example.mbti_final;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.mbti_final.ChatRoom.ChatListFragment;
 import com.example.mbti_final.ChatRoom.ChatRoomFragment;
 import com.example.mbti_final.ChatRoom.ChatRecyclerViewAdapter;
+import com.firebase.ui.auth.data.model.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
@@ -26,25 +36,45 @@ public class HomeActivity extends FragmentActivity {
     private TabLayout tab_home;                                 // 상단 TabLayout 관련 선언
     ChatRoomFragment chatRoomFragment;
     ChatListFragment chatListFragment;
+    ValueEventListener postListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
         inputUserData();    // 사용자 로그인 정보 DB 저장
         onTabChaned();      // 상단 탭 변경 시 이벤트
     }
 
     // 테스트 "Users" DB작성
     private void inputUserData(){
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
         HashMap<String, Object> userData = new HashMap<>();
         userData.put("name", firebaseUser.getDisplayName());
         userData.put("email", firebaseUser.getEmail());
         userData.put("uid", firebaseUser.getUid());
-        databaseReference.child(firebaseUser.getUid()).setValue(userData);
+        userData.put("nickname", "닉네임 미지정");
+
+        databaseReference.child("nickname").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                String nickname = (String) task.getResult().getValue();
+                if(!task.isSuccessful()){
+                    Log.e("firebase", "Error getting data", task.getException());
+                } else {
+                    if(nickname==null){
+                        DialogFragment dialogFragment = new NicknameFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("uid",firebaseUser.getUid());
+                        dialogFragment.setArguments(bundle);
+                        dialogFragment.show(getSupportFragmentManager(), "nickname");
+                    }
+                }
+            }
+        });
+
+        databaseReference.setValue(userData);
     }
 
     // 상단 탭 변경 시 탭별 프래그먼트 전환

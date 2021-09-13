@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d(TAG, "onCreate호출");
+
         onLoading();
     }
 
@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // 로딩 애니메이션 다이얼로그 출력
     protected void onLoading(){
         customLoadingDiaglog = new CustomLoadingDiaglog(this);
         customLoadingDiaglog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
