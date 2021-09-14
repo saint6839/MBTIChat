@@ -62,7 +62,7 @@ public class NicknameFragment extends DialogFragment {
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        inputUserData();
+                        writeUserData();
                         dialog.dismiss();
                     }
                 });
@@ -87,7 +87,7 @@ public class NicknameFragment extends DialogFragment {
     }
 
     // 테스트 "Users" DB작성
-    private void inputUserData() {
+    private void writeUserData() {
         databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
         HashMap<String, Object> userData = new HashMap<>();
         userData.put("name", firebaseUser.getDisplayName());
