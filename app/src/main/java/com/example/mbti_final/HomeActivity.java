@@ -34,28 +34,23 @@ public class HomeActivity extends FragmentActivity {
     private DatabaseReference databaseReference;                // RealtimeDB 관련 선언
     private FirebaseUser firebaseUser;
     private TabLayout tab_home;                                 // 상단 TabLayout 관련 선언
-    ChatRoomFragment chatRoomFragment;
-    ChatListFragment chatListFragment;
-    ValueEventListener postListener;
+    private ChatRoomFragment chatRoomFragment;                  // TabLayout 페이지1
+    private ChatListFragment chatListFragment;                  // TabLayout 페이지2
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Log.d(TAG, "onCreate() 호출");
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        inputUserData();    // 사용자 로그인 정보 DB 저장
+
+        showNicknameDialog();
         onTabChaned();      // 상단 탭 변경 시 이벤트
     }
 
-    // 테스트 "Users" DB작성
-    private void inputUserData(){
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
-        HashMap<String, Object> userData = new HashMap<>();
-        userData.put("name", firebaseUser.getDisplayName());
-        userData.put("email", firebaseUser.getEmail());
-        userData.put("uid", firebaseUser.getUid());
-        userData.put("nickname", "닉네임 미지정");
 
+    private void showNicknameDialog(){
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
         databaseReference.child("nickname").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -73,12 +68,11 @@ public class HomeActivity extends FragmentActivity {
                 }
             }
         });
-
-        databaseReference.setValue(userData);
     }
 
     // 상단 탭 변경 시 탭별 프래그먼트 전환
     private void onTabChaned(){
+        Log.d(TAG, "onTabChanged() 호출");
         chatRoomFragment = new ChatRoomFragment();
         chatListFragment = new ChatListFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.frameLayout, chatRoomFragment).commit();
